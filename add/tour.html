@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour & Travel - Book Your Trip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2em;
+        }
+
+        .option {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 1em;
+            text-align: center;
+            width: 25%;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1em;
+        }
+
+        .option img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .option button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1em;
+        }
+
+        .option button:hover {
+            background-color: #45a049;
+        }
+
+        .details {
+            display: none;
+            margin: 2em;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .details h2 {
+            margin-top: 0;
+        }
+
+        .details label {
+            display: block;
+            margin: 1em 0 0.5em;
+        }
+
+        .details select, .details input {
+            padding: 0.5em;
+            margin-bottom: 1em;
+            width: 100%;
+        }
+
+        .details button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .details button:hover {
+            background-color: #45a049;
+        }
+
+        .customer-details-form {
+            margin-top: 2em;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .customer-details-form label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .customer-details-form input {
+            padding: 0.5em;
+            margin-bottom: 1em;
+            width: 100%;
+        }
+
+        .confirmation {
+            margin-top: 2em;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+
+        .confirmation h3 {
+            font-size: 24px;
+        }
+
+        .confirmation p {
+            font-size: 18px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Book Your Trip with Us</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tour.html">Tour</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <!-- Customer Details Form -->
+    <div class="customer-details-form">
+        <h3>Your Details:</h3>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <div id="name-error" class="error"></div>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <div id="email-error" class="error"></div>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+        <div id="phone-error" class="error"></div>
+    </div>
+
+    <!-- Tour Options -->
+    <div class="container">
+        <div class="option">
+            <img src="C:\Users\dhanusree\Downloads\mountains.jpg" alt="Mountains">
+            <h3>Mountains</h3>
+            <button onclick="showDetails('mountains')">Book Now</button>
+        </div>
+        <div class="option">
+            <img src="C:\Users\dhanusree\Downloads\beach.jpg" alt="Beaches">
+            <h3>Beaches</h3>
+            <button onclick="showDetails('beaches')">Book Now</button>
+        </div>
+        <div class="option">
+            <img src="C:\Users\dhanusree\Downloads\temples.jpg" alt="Temples">
+            <h3>Temples</h3>
+            <button onclick="showDetails('temples')">Book Now</button>
+        </div>
+    </div>
+
+    <!-- Booking Details Section -->
+    <div id="details" class="details">
+        <h2>Booking Details</h2>
+        <p id="trip-info"></p>
+
+        <label for="destination">Select a Destination:</label>
+        <select id="destination">
+            <!-- Options dynamically populated -->
+        </select>
+
+        <label for="days">Number of Days:</label>
+        <input type="number" id="days" min="1" value="1">
+
+        <label for="fee">Fee Details:</label>
+        <p id="fee">Rs. 0</p>
+
+        <p>For any queries, contact: <strong>Customer Care: 1800-123-456</strong></p>
+
+        <button onclick="bookTrip()">Confirm Booking</button>
+    </div>
+
+    <!-- Booking Confirmation -->
+    <div id="confirmation" class="confirmation">
+        <h3>Booking Confirmation</h3>
+        <p><strong>Name:</strong> <span id="confirm-name"></span></p>
+        <p><strong>Email:</strong> <span id="confirm-email"></span></p>
+        <p><strong>Phone Number:</strong> <span id="confirm-phone"></span></p>
+        <p><strong>Destination:</strong> <span id="confirm-destination"></span></p>
+        <p><strong>Number of Days:</strong> <span id="confirm-days"></span></p>
+        <p><strong>Total Fee:</strong> Rs. <span id="confirm-fee"></span></p>
+    </div>
+
+    <script>
+        const destinations = {
+            mountains: [
+                { name: "Ooty", fee: 5000 },
+                { name: "Kodaikanal", fee: 6000 },
+                { name: "Yercaud", fee: 4000 }
+            ],
+            beaches: [
+                { name: "Marina Beach", fee: 3000 },
+                { name: "Mahabalipuram", fee: 4000 },
+                { name: "Rameswaram", fee: 3500 }
+            ],
+            temples: [
+                { name: "Madurai Meenakshi Temple", fee: 4500 },
+                { name: "Brihadeshwara Temple", fee: 5000 },
+                { name: "Rameswaram Temple", fee: 4000 }
+            ]
+        };
+
+        function showDetails(option) {
+            const detailsDiv = document.getElementById('details');
+            const tripInfo = document.getElementById('trip-info');
+            const destinationSelect = document.getElementById('destination');
+
+            tripInfo.textContent = `You have selected ${option.charAt(0).toUpperCase() + option.slice(1)}.`;  // Fixed line
+
+            destinationSelect.innerHTML = "";
+            destinations[option].forEach(dest => {
+                const optionElement = document.createElement('option');
+                optionElement.value = dest.fee;
+                optionElement.textContent = dest.name;
+                destinationSelect.appendChild(optionElement);
+            });
+
+            detailsDiv.style.display = 'block';  // Make details visible
+            updateFee();  // Update the fee based on initial selection
+            document.getElementById('days').addEventListener('input', updateFee);
+            destinationSelect.addEventListener('change', updateFee);
+        }
+
+        function updateFee() {
+            const destinationSelect = document.getElementById('destination');
+            const feeElement = document.getElementById('fee');
+            const days = document.getElementById('days').value;
+
+            const selectedFee = destinationSelect.value;
+            const totalFee = selectedFee * days;
+
+            feeElement.textContent = `Rs. ${totalFee}`;
+        }
+
+        function bookTrip() {
+            const destination = document.getElementById('destination');
+            const days = document.getElementById('days').value;
+            const fee = destination.value;
+
+            const customerName = document.getElementById('name').value;
+            const customerEmail = document.getElementById('email').value;
+            const customerPhone = document.getElementById('phone').value;
+
+            if (!validateName(customerName) || !validateEmail(customerEmail) || !validatePhone(customerPhone)) {
+                return;
+            }
+
+            document.getElementById('confirm-name').textContent = customerName;
+            document.getElementById('confirm-email').textContent = customerEmail;
+            document.getElementById('confirm-phone').textContent = customerPhone;
+            document.getElementById('confirm-destination').textContent = destination.options[destination.selectedIndex].text;
+            document.getElementById('confirm-days').textContent = days;
+            document.getElementById('confirm-fee').textContent = fee * days;
+
+            document.getElementById('confirmation').style.display = 'block';  // Show confirmation
+        }
+
+        function validateName(name) {
+            if (!name) {
+                document.getElementById('name-error').textContent = 'Name is required!';
+                return false;
+            }
+            document.getElementById('name-error').textContent = '';
+            return true;
+        }
+
+        function validateEmail(email) {
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email || !email.match(emailPattern)) {
+                document.getElementById('email-error').textContent = 'Please enter a valid email!';
+                return false;
+            }
+            document.getElementById('email-error').textContent = '';
+            return true;
+        }
+
+        function validatePhone(phone) {
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phone || !phone.match(phonePattern)) {
+                document.getElementById('phone-error').textContent = 'Please enter a valid phone number!';
+                return false;
+            }
+            document.getElementById('phone-error').textContent = '';
+            return true;
+        }
+    </script>
+</body>
+</html>

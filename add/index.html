@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour & Travel</title>
+    <style>
+        /* Ensure the body and html are full height and allow scrolling */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden; /* Allow scrolling vertically, prevent horizontal overflow */
+        }
+
+        /* Style the background video */
+        .background-video {
+            position: fixed;  /* Fix the video in place */
+            top: 0;
+            left: 0;
+            width: 100%;  /* Ensure the video covers the full width */
+            height: 100%; /* Ensure the video covers the full height */
+            object-fit: cover; /* Ensures the video covers the screen */
+            z-index: -1; /* Makes sure the video stays behind the content */
+        }
+
+        /* Green Background for Header */
+        header {
+            position: relative;
+            z-index: 1;  /* Make sure this appears above the video */
+            background-color: #4CAF50;  /* Green Background */
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        /* Green Background for About Us Section */
+        .about-us {
+            background-color: #4CAF50;  /* Green Background */
+            color: white;
+            text-align: center;
+            margin: 2em 0;  /* Reduced margin to make the section smaller */
+            z-index: 1;
+            padding: 1em;  /* Reduced padding for a smaller section */
+            border-radius: 10px;
+            width: 70%;  /* Reduced width for a more compact section */
+            margin-left: 15%;  /* Center the section */
+        }
+
+        .about-us h2 {
+            font-size: 2em;  /* Reduced font size */
+            margin-bottom: 0.5em;  /* Reduced margin for a smaller heading */
+        }
+
+        .about-us p {
+            font-size: 1em;  /* Adjusted font size */
+            width: 80%;  /* Adjusted width for better text flow */
+            margin: 0 auto;
+        }
+
+        /* Buttons for Start Booking and Contact Us */
+        .buttons {
+            text-align: center;
+            margin-top: 3em;
+            z-index: 1;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em 2em;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin: 1em;
+        }
+
+        .buttons a:hover {
+            background-color: #45a049;
+        }
+
+        /* Tour Options */
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin: 2em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .option {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 1em;
+            text-align: center;
+            width: 25%;
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .option img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .option button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1em;
+        }
+
+        .option button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <video class="background-video" autoplay muted loop>
+        <source src="C:\Users\dhanusree\Pictures\vedio.jpg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Header with Green Background -->
+    <header>
+        <h1>Welcome to GAD Tour & Travel</h1>
+    </header>
+
+    <!-- About Us Section with Green Background -->
+    <div class="about-us">
+        <h2>About Us</h2>
+        <p>
+            We are a leading travel agency dedicated to providing amazing experiences through a variety of tours and destinations. Whether you want to explore the majestic mountains, relax on beautiful beaches, or visit ancient temples, we have a perfect travel package just for you. Let us help you create unforgettable memories!
+        </p>
+    </div>
+
+    <!-- Buttons for Start Booking and Contact Us -->
+    <div class="buttons">
+        <a href="tour.html">Start Booking</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+</body>
+</html>
